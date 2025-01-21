@@ -1,0 +1,238 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connected Users</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="image-container">
+    <img src="https://images.idgesg.net/images/article/2020/04/zoom_video_conferencing_online_meeting_remote_workers_one_user_connected_via_laptop_with_a_grid_of_twelve_participants_on_screen_2400x1600-100837446-large.jpg?auto=webp&quality=85,70" alt="Image">
+  </div>
+
+  <div class="main">
+    <div class="new-meeting">
+      <button id="newMeetingBtn">Create a New Meeting</button>
+      <div class="join-meeting">
+        <input type="text" placeholder="Meeting ID" id="meetingName">
+        <button id="joinMeetingBtn">Join</button>
+      </div>
+    </div>
+    <div class="connected-users">
+      <button id="logoutBtn">Logout</button>
+      <h2>Connected Users</h2>
+      <ul id="userList"></ul>
+    </div>
+  </div>
+</div>
+<script src="/js/index.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .image-container,
+        .main {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .new-meeting {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .new-meeting button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .new-meeting button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #ee0979, #ff6a00);
+        }
+
+        .join-meeting {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .join-meeting input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .join-meeting button {
+            padding: 10px;
+            background: linear-gradient(90deg, #36d1dc, #5b86e5);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .join-meeting button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #5b86e5, #36d1dc);
+        }
+
+        .connected-users {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .connected-users h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .connected-users ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .connected-users li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .connected-users li i {
+            font-size: 18px;
+        }
+
+        .connected-users li i.online {
+            color: #02fb10;
+        }
+
+        .connected-users li i.offline {
+            color: #e61876;
+        }
+
+        #logoutBtn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #ff512f, #dd2476);
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        #logoutBtn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #dd2476, #ff512f);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="https://images.idgesg.net/images/article/2020/04/zoom_video_conferencing_online_meeting_remote_workers_one_user_connected_via_laptop_with_a_grid_of_twelve_participants_on_screen_2400x1600-100837446-large.jpg?auto=webp&quality=85,70"
+                alt="Image">
+        </div>
+
+        <div class="main">
+            <div class="new-meeting">
+                <button id="newMeetingBtn">Create a New Meeting</button>
+                <div class="join-meeting">
+                    <input type="text" placeholder="Enter Meeting ID" id="meetingName">
+                    <button id="joinMeetingBtn">Join</button>
+                </div>
+            </div>
+            <div class="connected-users">
+                <button id="logoutBtn">Logout</button>
+                <h2>Connected Users</h2>
+                <ul id="userList">
+                    <li>
+                        User 1 <i class="fa fa-lightbulb-o online"></i>
+                    </li>
+                    <li>
+                        User 2 <i class="fa fa-lightbulb-o offline"></i>
+                    </li>
+                    <li>
+                        User 3 <i class="fa fa-lightbulb-o online"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

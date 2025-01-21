@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <h3>Chat</h3>
+            <ul id="chatMessages"></ul>
+            <input type="text" id="chatInput" placeholder="Type a message..." />
+            <button id="sendMsgBtn">Send</button>
+        </div>
+
+        <div class="video-container">
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+        </div>
+
+        <div class="controls">
+            <button id="startCallBtn" class="btn start-btn"><i class="fa fa-phone"></i> Start Call</button>
+            <button id="endCallBtn" class="btn end-btn hide"><i class="fa fa-phone-slash"></i> End Call</button>
+            <button id="muteBtn" class="btn hide"><i class="fa fa-microphone"></i> Mute</button>
+            <button id="videoBtn" class="btn hide"><i class="fa fa-video-camera"></i> Stop Video</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
